@@ -1,34 +1,49 @@
-# > Claude
-# 🤖 Anthropic / Claude 核心服务域名
+# =========================================
+# 🤖 Claude 核心专属分流
+# =========================================
+# 👉 核心域名与 API
 DOMAIN-SUFFIX,anthropic.com
 DOMAIN-SUFFIX,claude.ai
+DOMAIN-SUFFIX,claude.com
+DOMAIN-SUFFIX,clau.de
+DOMAIN-SUFFIX,claudeusercontent.com
 DOMAIN-SUFFIX,useclaude.com
+DOMAIN-SUFFIX,modelcontextprotocol.io
 DOMAIN-KEYWORD,anthropic
-# 📡 遥测与功能开关 (极度重要：防 IP 侧漏)
-# 从逆向分析来看，Claude 极度依赖以下服务进行环境检测。
-# 绝不能屏蔽 (屏蔽会被判定为机器人)，也绝不能直连 (会暴露真实IP)！
-  # LaunchDarkly (Claude 用它控制前端功能推送，请求极其频繁)
+
+# 👉 核心风控与反欺诈 (防封号关键)
+DOMAIN-SUFFIX,siftscience.com
+DOMAIN-SUFFIX,sift.com
+
+# 👉 遥测、功能开关与应用监控 (防 IP 侧漏)
 DOMAIN-SUFFIX,launchdarkly.com
 DOMAIN-SUFFIX,clientstream.launchdarkly.com
-  # Statsig (A/B测试与事件打点，风控数据回传节点)
 DOMAIN-SUFFIX,statsig.com
 DOMAIN-SUFFIX,statsigapi.net
 DOMAIN-SUFFIX,features.statsigapi.net
-  # Sentry (错误日志收集，如果页面报错，错误报告会带上真实IP)
 DOMAIN-SUFFIX,sentry.io
-# 💳 支付网关防风控 (针对 Claude Pro 用户)
-# Stripe 必须与 Claude 走相同的代理节点，否则触发风控秒封
+DOMAIN-SUFFIX,growthbook.io
+DOMAIN-SUFFIX,usefathom.com
+DOMAIN-SUFFIX,datadoghq.com
+DOMAIN-SUFFIX,browser-intake-datadoghq.com
+
+# 👉 客服与支持系统
+DOMAIN-SUFFIX,intercom.io
+DOMAIN-SUFFIX,intercomcdn.com
+
+# 👉 支付与订阅保障 (Stripe)
 DOMAIN-SUFFIX,stripe.com
 DOMAIN-SUFFIX,stripe.network
-DOMAIN-SUFFIX,js.stripe.com
-DOMAIN-SUFFIX,m.stripe.com
-DOMAIN-SUFFIX,b.stripe.com
-# 🧩 验证码与前端防伪 (Cloudflare & Google)
+
+# 👉 验证码与人机验证
 DOMAIN-SUFFIX,challenges.cloudflare.com
 DOMAIN-SUFFIX,hcaptcha.com
 DOMAIN-SUFFIX,recaptcha.net
-# 📦 CDN 与静态资源
-DOMAIN-SUFFIX,cdn.useclaude.com
 
-DOMAIN-SUFFIX,siftscience.com
-DOMAIN-SUFFIX,ntp.org
+# 👉 CDN 与静态资源分发
+DOMAIN,downloads.claude.ai
+DOMAIN,storage.googleapis.com
+
+# 👉 官方 ASN IP 段兜底
+IP-CIDR,160.79.104.0/21,no-resolve
+IP-CIDR6,2607:6bc0::/48,no-resolve
